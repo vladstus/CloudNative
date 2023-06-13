@@ -1,4 +1,4 @@
-name: Commit Stage
+name: Commit Stage 2
 on: Push
 jobs:
   build:
