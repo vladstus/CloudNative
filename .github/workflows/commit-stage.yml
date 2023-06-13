@@ -1,4 +1,4 @@
-name: Commit Stage
+name: Catalog Service Commit Stage
 on: workflow_dispatch
 jobs:
   build:
@@ -32,5 +32,5 @@ jobs:
           sarif_file: ${{ steps.scan.outputs.sarif }}
       - name: Build, unit tests and integration tests
         run: |
-          chmod +x gradlew
-          ./gradlew build
+          chmod +x catalog-service/gradlew
+          catalog-service/gradlew build
