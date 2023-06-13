@@ -35,5 +35,6 @@ jobs:
           pwd
           cd catalog-service
           pwd
+          ls -la
           chmod +x gradlew
           gradlew build
