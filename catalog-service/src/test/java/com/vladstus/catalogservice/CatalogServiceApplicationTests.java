@@ -18,7 +18,7 @@ class CatalogServiceApplicationTests {
     private WebTestClient webTestClient;
 
     @Test
-    @Disabled("disabled until config service not running externally")
+//    @Disabled("disabled until config service not running externally")
     void whenPostRequestThenBookCreated() {
         var expectedBook = new Book("1231231231", "Title", "Author", 9.90);
 
