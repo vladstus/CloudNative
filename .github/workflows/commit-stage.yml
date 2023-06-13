@@ -1,5 +1,5 @@
 name: Catalog Service Commit Stage
-on: workflow_dispatch
+on: push
 jobs:
   build:
     name: Build and Test
