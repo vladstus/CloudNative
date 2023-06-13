@@ -19,3 +19,9 @@ http POST :9001/books author="Lyra Silverstar" title="Northern Lights" isbn="123
 ```agsl
 http :9001/books/1234567891
 ```
+
+#### Bad Request Example
+
+```agsl
+http POST :9001/books author="Jon Snow" title="" isbn="123ABC456Z" price=9.90
+```
