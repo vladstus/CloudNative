@@ -32,9 +32,9 @@ spring:
       connection-timeout: 2000
       maximum-pool-size: 5
   #      connection-init-sql: SET TIME ZONE 'Europe/Kiev'
-  sql:
-    init:
-      mode: always
+#  sql:
+#    init:
+#      mode: always
 
 management:
   endpoints:
