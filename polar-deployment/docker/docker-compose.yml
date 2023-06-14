@@ -15,6 +15,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://polar-postgres:5432/polardb_catalog
       - SPRING_CLOUD_CONFIG_URI=http://config-service:8888
       - SPRING_PROFILES_ACTIVE=testdata
+    restart: unless-stopped
 
   config-service:
     image: "ghcr.io/vladstus/config-service:latest"
@@ -27,6 +28,7 @@ services:
       timeout: 5s
       retries: 8
       start_period: 10s
+    restart: unless-stopped
 
   polar-postgres:
     image: "postgres:14.4"
@@ -37,3 +39,4 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=polardb_catalog
+    restart: unless-stopped
