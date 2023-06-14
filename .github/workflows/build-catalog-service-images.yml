@@ -6,6 +6,9 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Change working directory
+        run: |
+          cd catalog-service
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up QEMU
@@ -20,9 +23,7 @@ jobs:
           password: ${{ secrets.TOKEN_GH }}
       #          username: ${{ secrets.DOCKERHUB_USERNAME }}
       #          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Change working directory
-        run: |
-          cd catalog-service
+
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
