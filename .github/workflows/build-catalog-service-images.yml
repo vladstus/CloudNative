@@ -23,7 +23,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./catalog-service
+          working-directory: ./catalog-service
+          context: .
           platforms: linux/amd64,linux/arm/v8
           push: true
           tags: ghcr.io/vladstus/catalog-service:latest
