@@ -18,6 +18,8 @@ services:
     container_name: config-service
     ports:
       - 8888:8888
+
+
   polar-postgres:
     image: "postgres:14.4"
     container_name: "polar-postgres"

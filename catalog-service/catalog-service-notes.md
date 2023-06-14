@@ -6,4 +6,4 @@ SPRING_DATASOURCE_URL=jdbc:postgresql://polar-postgres:5432/polardb_catalog -p 9
 ### Build multiarch image and push it to github registry
 
 docker buildx create --use --name buildx_instance
-docker buildx build --platform linux/amd64,linux/arm/v8 -t ghcr.io/vladstus/catalog-service:latest . --push
+docker buildx build --platform linux/amd64,linux/arm/v8 -t ghcr.io/vladstus/config-service:latest . --push
