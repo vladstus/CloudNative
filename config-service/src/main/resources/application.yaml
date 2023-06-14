@@ -19,3 +19,8 @@ spring:
           clone-on-start: true
           force-pull: true
           search-paths: 'config-repo'
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
