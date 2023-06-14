@@ -14,7 +14,7 @@ repositories {
 
 configurations {
     compileOnly {
-		extendsFrom annotationProcessor
+        extendsFrom annotationProcessor
     }
 }
 
@@ -53,6 +53,12 @@ dependencyManagement {
 bootRun {
     systemProperty 'spring.profiles.active', ['testdata']
 }
+
+bootBuildImage {
+    imageName = "${project.name}"
+    environment = ["BP_JVM_VERSION": "17.*"]
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
