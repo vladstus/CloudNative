@@ -10,6 +10,11 @@ spring:
     name: edge-service
   lifecycle:
     timeout-per-shutdown-phase: 15s
+  redis:
+    connect-timeout: 2s
+    host: localhost
+    port: 6379
+    timeout: 1s
   cloud:
     gateway:
       httpclient:
@@ -39,6 +44,12 @@ spring:
               args:
                 name: orderCircuitBreaker
       default-filters:
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter:
+              replenishRate: 10
+              burstCapacity: 20
+              requestedTokens: 1
         - name: Retry
           args:
             retries: 3
@@ -54,9 +65,9 @@ resilience4j:
   circuitbreaker:
     configs:
       default:
-        sliding-window-size: : 20
-        permitted-number-of-calls-in-half-open-state: : 5
-        failure-rate-threshold: : 50
+        sliding-window-size: 20
+        permitted-number-of-calls-in-half-open-state: 5
+        failure-rate-threshold: 50
         wait-duration-in-open-state: 15000
   timelimiter:
     configs:
