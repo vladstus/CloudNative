@@ -21,7 +21,7 @@ spec:
           lifecycle:
             preStop:
               exec:
-                command: ["sh", "-c", "sleep 5"]
+                command: [ "sh", "-c", "sleep 5" ]
           ports:
             - containerPort: 9000
           env:
@@ -35,3 +35,7 @@ spec:
               value: http://catalog-service
             - name: ORDER_SERVICE_URL
               value: http://order-service
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI
+              value: http://polar-keycloak/realms/PolarBookshop
+            - name: SPA_URL
+              value: http://polar-ui
