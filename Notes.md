@@ -1,6 +1,6 @@
 # Notes
 Book: Spring Native
-Last page: 689
+Last page: 706
 
 # TODO
 
