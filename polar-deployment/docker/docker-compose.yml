@@ -55,8 +55,8 @@ services:
       - SPRING_REDIS_HOST=polar-redis
       - CATALOG_SERVICE_URL=http://catalog-service:9001
       - ORDER_SERVICE_URL=http://order-service:9002
-#      - SPRING_R2DBC_URL=r2dbc:postgresql://polar-postgres:5432/polardb_order
-#      - SPRING_FLYWAY_URL=jdbc:postgresql://polar-postgres:5432/polardb_order
+  #      - SPRING_R2DBC_URL=r2dbc:postgresql://polar-postgres:5432/polardb_order
+  #      - SPRING_FLYWAY_URL=jdbc:postgresql://polar-postgres:5432/polardb_order
   config-service:
     image: "ghcr.io/vladstus/config-service:latest"
     container_name: config-service
@@ -87,3 +87,12 @@ services:
     container_name: "polar-redis"
     ports:
       - "6379:6379"
+
+  polar-rabbitmq:
+    image: rabbitmq:3.10-management
+    container_name: polar-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
