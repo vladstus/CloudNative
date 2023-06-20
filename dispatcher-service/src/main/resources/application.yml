@@ -12,7 +12,7 @@ spring:
           destination: order-accepted
           group: ${spring.application.name}
         packlabel-out-0:
-          destination: order-dipatched
+          destination: order-dispatched
   rabbitmq:
     host: localhost
     port: 5672
