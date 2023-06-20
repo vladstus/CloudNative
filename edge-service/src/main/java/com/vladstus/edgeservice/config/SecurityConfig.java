@@ -12,6 +12,10 @@ import org.springframework.security.oauth2.client.registration.ReactiveClientReg
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.HttpStatusServerEntryPoint;
 import org.springframework.security.web.server.authentication.logout.ServerLogoutSuccessHandler;
+import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
+import org.springframework.security.web.server.csrf.CsrfToken;
+import org.springframework.web.server.WebFilter;
+import reactor.core.publisher.Mono;
 
 @EnableWebFluxSecurity
 public class SecurityConfig {
@@ -30,6 +34,7 @@ public class SecurityConfig {
                 })
                 .oauth2Login(Customizer.withDefaults())
                 .logout(logout -> logout.logoutSuccessHandler(oidcLogoutSuccessHandler(clientRegistrationRepository)))
+                .csrf(csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
                 .build();
     }
 
@@ -44,5 +49,17 @@ public class SecurityConfig {
         return oidcLogoutSuccessHandler;
     }
 
+    //Should not be required in imperative applications
+    @Bean
+    WebFilter csrfWebFilter() {
+        return (exchange, chain) -> {
+            exchange.getResponse().beforeCommit(() -> Mono.defer(() -> {
+                Mono<CsrfToken> csrfToken = exchange.getAttribute(CsrfToken.class.getName());
+
+                return csrfToken != null ? csrfToken.then() : Mono.empty();
+            }));
+            return chain.filter(exchange);
+        };
+    }
 
 }
