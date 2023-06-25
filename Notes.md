@@ -1,7 +1,11 @@
 # Notes
 Book: Spring Native
-Last page: 781
+Last page: 794
 
-# TODO
+# Troubleshooting
 
-1. Add commands to run create and destroy cluster from any folder
+1. polar-destroy-cluster to destroy minikube cluster
+2. polar-create-cluster to create cluster
+3. Make sure nothing is running on port 80(like nginx)
+4. minikube tunnel --profile polar to modify ingresses
+5. On Windows polar-keycloak host should be added

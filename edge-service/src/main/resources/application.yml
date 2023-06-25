@@ -78,6 +78,7 @@ spring:
             - Path=/,/*.css,/*.js,/favicon.ico
       default-filters:
         - SaveSession
+        - TokenRelay
         - name: RequestRateLimiter
           args:
             redis-rate-limiter:
